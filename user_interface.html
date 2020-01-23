@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+    <script src = "jquery.js">
+        
+    </script>
+    
+    <title>
+        Interface_merchant
+    </title>
+</head>
+<body>
+    <!--
+        1. take input
+        2. verify input
+        3. click update
+        ---------------- NOTE: SEND TO SERVER -------------
+        4. write in CSV
+    -->
+    <style>
+        .center{
+            text-align: center;
+        }
+    </style>
+    <div class = center>
+        <p id="merchant_name">
+            Please enter business name:
+            <input type="text" id = "name">
+            <button type="button" id = "confirm" onclick="writeTextboxInCSV('name', 'confirm' , 'avaibleProducts')"> Confirm</button>
+        </p>
+    
+        <p id="merchant_lat">
+            Please enter latitude:
+            <input type="text" id = "lat">
+            <button type="button" id = "confirm" onclick="writeTextboxInCSV('lat', 'confirm' , 'avaibleProducts')"> Confirm</button>
+        </p>
+
+        <p id="merchant_long">
+            Please enter longitude:
+            <input type="text" id = "long">
+            <button type="button" id = "confirm" onclick="writeTextboxInCSV('long', 'confirm' , 'avaibleProducts')"> Confirm</button>
+        </p>   
+
+        <p id="merchant_product">
+            Please enter amount of boxes:
+            <input type="text" id = "product">
+            <button type="button" id = "confirm" onclick="writeTextboxInCSV('product', 'confirm' , 'avaibleProducts')"> Confirm</button>
+        </p>
+
+        <p id="merchant_amount">
+            Please enter amount of boxes:
+            <input type="text" id = "amount">
+            <button type="button" id = "confirm" onclick="writeTextboxInCSV('amount', 'confirm' , 'avaibleProducts')"> Confirm</button>
+        </p>
+
+    </div>
+
+
+    <script>
+        function ConvertToCSV(object) {
+            var objArray = Object.values(object);
+            var str = '';
+
+            for (var i = 0; i < objArray.length; i++) {
+                var line = objArray[i];
+                str += line + ',';
+            }
+            str = str.substring(0, str.length - 1);
+            str += '\r\n';
+
+
+            return str;
+        }
+
+        function writeTextboxInCSV(boxID, confirmButton, paragraphID) {
+
+            var box = document.getElementById(boxID);
+       
+            var text = document.getElementById(paragraphID);
+
+            var button = document.getElementById(confirmButton);
+            if(box.value == ""){
+                alert("Please enter amount");
+            }
+            else if(isNaN(parseFloat(box.value))) {
+                alert("Invalid value!");
+            }
+            else{
+                var csv = ConvertToCSV({'name': "bob", 'age':20, 'w':2, '3l' : 33});
+                
+            }
+        }
+            
+        //writeTextboxInCSV("amount", "confirm" , "avaibleProducts");
+    </script>
+
+    <!--
+        <?php for($i=1;$i<=5;$i++){ ?>
+        <li>Menu Item <?php echo $i; ?></li> 
+    <?php } ?>
+    -->
+
+    
+
+
+</body>
+
+</html>
